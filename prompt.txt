@@ -5,8 +5,8 @@ Your goal is to extract segments that have **Perfect Narrative Completeness** (S
 
 ### INPUT FORMAT EXPLAINED
 The transcript below is a continuous text stream with embedded **Time Tags** like `(12s)`.
-- Example: `"Hello world (0s). Today we are going to (3s) fly to the moon."`
-- These tags represent the approximate timestamp of the *preceding* text.
+- Example: `"(0s) Hello world. Today we are going to (3s) fly to the moon."`
+- These tags represent the timestamp of the word following the tag.
 - Use them to calculate duration. Duration = (End Tag - Start Tag).
 
 ### STRICT VIRAL RULES (The "ViralCutter Standard"):
@@ -24,11 +24,12 @@ The transcript below is a continuous text stream with embedded **Time Tags** lik
 3.  **NARRATIVE ARC:**
     -   **Start:** Hook (0-3s).
     -   **Middle:** Value/Story (Retain attention).
-    -   **End:** Punchline/Conclusion (Satisfying ending). NEVER cut mid-sentence.
+    -   **End:** Punchline/Conclusion (Satisfying ending). Never cut mid-sentence.
 
 4.  **DURATION MATH:**
     -   Use the `(XXs)` tags to estimate duration.
-    -   CONSTRAINT: Segment MUST be between {min_duration}s and {max_duration}s.
+    -   CONSTRAINT: Segment should be between {min_duration}s and {max_duration}s.
+    -   CONSTRAINT: Never start between time tags.
 
 ### YOUR TASK:
 Analyze the transcript below. Find {amount} potential viral segments.
