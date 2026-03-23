@@ -498,7 +498,7 @@ def process_segments(raw_segments, transcript_segments, min_duration, max_durati
     return final_result
 
 
-def create(num_segments, viral_mode, themes, tempo_minimo, tempo_maximo, ai_mode="manual", api_key=None, project_folder="tmp", chunk_size_arg=None, model_name_arg=None, llama_args={}):
+def create(num_segments, viral_mode, themes, tempo_minimo, tempo_maximo, ai_mode="manual", api_key=None, project_folder="tmp", chunk_size_arg=None, model_name_arg=None):
     quantidade_de_virals = num_segments
 
     # 1. Load Transcript
@@ -687,13 +687,12 @@ OUTPUT JSON ONLY:
         
         print(f"[INFO] Loading Local Model: {os.path.basename(model_path)} (This may take a while)...")
         try:
-            default_llama_args= {
-                "model_path": model_path,
-                "n_gpu_layers": -1, 
-                "n_ctx": 8192,
-                "verbose": False
-            }
-            local_llm_instance = Llama(**(default_llama_args | llama_args))
+            local_llm_instance = Llama(
+                model_path=model_path,
+                n_gpu_layers=-1, 
+                n_ctx=8192,
+                verbose=False
+            )
         except Exception as e:
             print(f"Failed to load model: {e}")
             return {"segments": []}

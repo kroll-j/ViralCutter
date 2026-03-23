@@ -39,7 +39,7 @@ def init_insightface():
     if app is None:
         # Provider options to reduce logging if possible (often needs env var)
         # But redirection is safer for C++ logs
-        providers = ["CUDAExecutionProvider"]   # XXXX ['CUDAExecutionProvider', 'CPUExecutionProvider']
+        providers = ['CUDAExecutionProvider', 'CPUExecutionProvider']
         
         try:
             import onnxruntime as ort
@@ -51,8 +51,7 @@ def init_insightface():
         except Exception as e:
             print(f"InsightFace: Could not check available providers: {e}")
 
-        # with suppress_stdout_stderr():
-        if True:
+        with suppress_stdout_stderr():
             app = FaceAnalysis(name='buffalo_l', providers=providers)
             app.prepare(ctx_id=0, det_size=(640, 640))
     return app
