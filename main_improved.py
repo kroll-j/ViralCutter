@@ -138,7 +138,7 @@ def main():
     parser.add_argument("--video-quality", choices=["best", "1080p", "720p", "480p"], default="best", help="Video download quality")
     parser.add_argument("--skip-youtube-subs", action="store_true", help="Skip downloading YouTube subtitles")
     parser.add_argument("--translate-target", help="Target language code for subtitle translation (e.g. 'pt', 'en').")
-    parser.add_argument("--llama-args", help="override any llama_cpp.llama.LLama() constructor args, json, e.g.: '{\"n_gpu_layers\": 40, \"n_ctx\": 8192, \"kv_overrides\": { \"kv_unified\": true }, \"flash_attn\": true }' -- see https://llama-cpp-python.readthedocs.io/en/latest/api-reference/#llama_cpp.Llama.__init__", default='{"n_gpu_layers": -1, "n_ctx": 8192, "verbose": False }')
+    parser.add_argument("--llama-args", help="override any llama_cpp.llama.LLama() constructor args, json, e.g.: '{\"n_gpu_layers\": 40, \"n_ctx\": 8192, \"kv_overrides\": { \"kv_unified\": true }, \"flash_attn\": true }' -- see https://llama-cpp-python.readthedocs.io/en/latest/api-reference/#llama_cpp.Llama.__init__", default='{"n_gpu_layers": -1, "n_ctx": 8192, "verbose": false }')
 
     args = parser.parse_args()
     
